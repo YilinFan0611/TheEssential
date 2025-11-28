@@ -203,17 +203,24 @@ export default function Home() {
             Features
           </h2>
 
-          {/* Video Placeholder */}
-          <div className="w-full h-[80vh] bg-[#DBDBDE] rounded-[24px] flex items-center justify-center relative cursor-pointer group shadow-sm">
+          {/* Video Container */}
+          {/* Added 'overflow-hidden' to ensure the video respects the rounded corners */}
+          <div className="w-full h-[80vh] bg-[#DBDBDE] rounded-[24px] flex items-center justify-center relative overflow-hidden shadow-sm">
              
-             {/* Play Button Circle */}
-             <div className="w-20 h-20 rounded-full border-[3px] border-[#0F141A] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <Play size={32} fill="#0F141A" className="text-[#0F141A] ml-1" />
-             </div>
+             {/* THE VIDEO ELEMENT */}
+             <video 
+                src="/feature-video.mp4" // Make sure this matches your filename in the public folder
+                autoPlay       // Plays automatically on load
+                loop           // Repeats when finished
+                muted          // REQUIRED for autoplay to work
+                playsInline    // REQUIRED for iOS (prevents full-screen takeover)
+                className="w-full h-full object-cover" // Ensures video fills the box without stretching
+             />
 
-             <span className="absolute bottom-8 text-[#8C8C94] font-medium text-sm">
-                Video Render Placeholder
-             </span>
+             {/* Optional: Overlay Text (If you want text on top of the video) */}
+             {/* <span className="absolute bottom-8 text-white font-medium text-sm z-10 bg-black/20 px-4 py-2 rounded-full">
+                The Re-Vault in Action
+             </span> */}
           </div>
 
         </div>

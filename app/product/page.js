@@ -23,11 +23,11 @@ function ProductContent() {
 
   // --- IMAGE MAP ---
   const imageMap = {
-    "Onyx":   ["/Variant1.PNG", "/Variant1_2.PNG", "/Variant1_3.PNG", "/Variant1_4.PNG"],
-    "Moss":   ["/Variant2.PNG", "/Variant2_2.PNG", "/Variant2_3.PNG", "/Variant2_4.PNG"],
-    "Abyss":  ["/Variant3.PNG", "/Variant3_2.PNG", "/Variant3_3.PNG", "/Variant3_4.PNG"],
-    "Sable":  ["/Variant4.PNG", "/Variant4_2.PNG", "/Variant4_3.PNG", "/Variant4_4.PNG"],
-    "Terra":  ["/Variant5.PNG", "/Variant5_2.PNG", "/Variant5_3.PNG", "/Variant5_4.PNG"]
+    "Onyx":   ["/Variant1.PNG", "/Variant1_2.PNG", "/Variant1_3.PNG", "/Variant1_4.jpg"],
+    "Moss":   ["/Variant2.PNG", "/Variant2_2.PNG", "/Variant2_3.PNG", "/Variant2_4.jpg"],
+    "Abyss":  ["/Variant3.PNG", "/Variant3_2.PNG", "/Variant3_3.PNG", "/Variant3_4.jpg"],
+    "Sable":  ["/Variant4.PNG", "/Variant4_2.PNG", "/Variant4_3.PNG", "/Variant4_4.jpg"],
+    "Terra":  ["/Variant5.PNG", "/Variant5_2.PNG", "/Variant5_3.PNG", "/Variant5_4.jpg"]
   };
 
   const currentImages = imageMap[selectedColor] || imageMap["Onyx"];
@@ -50,10 +50,26 @@ function ProductContent() {
     { name: "Terra", hex: "#9E4F32" },
   ];
 
+  // 1. UPDATED: Added real images and text content
   const detailedFeatures = [ 
-    { id: 1, title: "Detailed Feature 1", desc: "Lorem ipsum dolor sit amet..." },
-    { id: 2, title: "Detailed Feature 2", desc: "Lorem ipsum dolor sit amet..." },
-    { id: 3, title: "Detailed Feature 3", desc: "Lorem ipsum dolor sit amet..." },
+    { 
+      id: 1, 
+      img: "/DetailedFeature1.png",
+      title: "Horizontal Sliding Door", 
+      desc: "A compact storage compartment with a horizontal sliding door that opens and closes to hold small items such as SIM cards, ejector pins, and other little accessories." 
+    },
+    { 
+      id: 2, 
+      img: "/DetailedFeature2.png",
+      title: "Vertical-Axis Revolving Door", 
+      desc: "A medium-item storage compartment that opens and closes via a vertical-axis revolving door, suitable for holding medium-sized items such as keys. The door component can also function as a horizontal stand for the phone." 
+    },
+    { 
+      id: 3, 
+      img: "/DetailedFeature3.png",
+      title: "Horizontal-Axis Revolving Door", 
+      desc: "A large-item storage compartment that opens and closes via a horizontal-axis revolving door, suitable for storing larger items such as various cards and the AdraCard EpiPen. The door component can also function as both a vertical and horizontal stand for the phone." 
+    },
   ];
 
   const productInfo = [
@@ -215,7 +231,15 @@ A: The built-in kickstand is sturdy and supports both vertical and horizontal vi
             <div className="grid grid-cols-3 gap-6">
                 {detailedFeatures.map((feature) => (
                     <div key={feature.id} className="flex flex-col bg-white rounded-[16px] overflow-hidden">
-                        <div className="h-[320px] bg-[#DBDBDE] flex items-center justify-center"><ImageIcon size={64} className="text-gray-500" strokeWidth={1.5} /></div>
+                        {/* 2. UPDATED: Using Next.js Image component */}
+                        <div className="h-[320px] bg-[#DBDBDE] relative flex items-center justify-center">
+                            <Image 
+                                src={feature.img} 
+                                alt={feature.title}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
                         <div className="p-4 flex flex-col gap-2">
                             <h3 className="text-[24px] font-bold text-[#0F141A] font-open-sans leading-[30px] tracking-[-0.48px]">{feature.title}</h3>
                             <p className="text-sm font-regular text-[#424650] font-open-sans leading-[20px] tracking-[0px]">{feature.desc}</p>
@@ -232,8 +256,6 @@ A: The built-in kickstand is sturdy and supports both vertical and horizontal vi
           Product Information
         </h2>
         <div className="grid grid-cols-12 gap-[60px]">
-          
-          {/* Left Accordion List */}
           <div className="col-span-6 flex flex-col">
             <div className="w-full h-[1px] bg-[#0F141A]" />
             {productInfo.map((item) => {
@@ -256,8 +278,6 @@ A: The built-in kickstand is sturdy and supports both vertical and horizontal vi
               );
             })}
           </div>
-
-          {/* --- RIGHT IMAGE UPDATED HERE --- */}
           <div className="col-span-6 min-h-[600px] h-full relative overflow-hidden">
             <Image 
                 src="/ProductInformation.png" 
@@ -266,7 +286,6 @@ A: The built-in kickstand is sturdy and supports both vertical and horizontal vi
                 className="object-cover"
             />
           </div>
-
         </div>
       </section>
 
